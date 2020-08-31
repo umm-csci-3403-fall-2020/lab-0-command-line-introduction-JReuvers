@@ -6,10 +6,10 @@ num=${1?Error: no number given}
 tar zxf NthPrime.tgz
 
 #Entering the new directory
-cd NthPrime
+cd NthPrime || exit
 
 #Compiling the c files
 gcc main.c nth_prime.c -o NthPrime
 
 #Runs the compiled c program with previously specified value
-./NthPrime $num
+./NthPrime "$num"

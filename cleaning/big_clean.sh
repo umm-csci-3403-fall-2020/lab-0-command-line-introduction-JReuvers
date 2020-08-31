@@ -12,17 +12,18 @@ tmp_dir=$(mktemp -d)
 
 #Uncompresses and untars the designated FILE
 #Places it in the temp directory made prior
-tar -xzf $FILE -C $tmp_dir
+tar -xzf "$FILE" -C "$tmp_dir"
 
 #Saves the current directory as HERE
 HERE=$(pwd)
 
-cd $tmp_dir/$BASE
+cd "$tmp_dir"
+pushd "$BASE"
 
 #Finds and deletes files that have DELETE ME! in them 
-rm -f `find . | xargs grep -l -F "DELETE ME!"`
+rm -f $(find . | xargs grep -l -F "DELETE ME!")
 
-cd ..
+popd
 
 #Compresses and places the files back into the original directory
-tar -czf $HERE/cleaned_$FILE $BASE
+tar -czf "$HERE"/cleaned_"$FILE" "$BASE"
