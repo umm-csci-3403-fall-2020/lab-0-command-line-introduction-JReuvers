@@ -11,4 +11,5 @@ cd NthPrime
 #Compiling the c files
 gcc main.c nth_prime.c -o NthPrime
 
+#Runs the compiled c program with previously specified value
 ./NthPrime $num
