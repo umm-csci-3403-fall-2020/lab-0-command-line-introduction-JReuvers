@@ -17,13 +17,13 @@ tar -xzf "$FILE" -C "$tmp_dir"
 #Saves the current directory as HERE
 HERE=$(pwd)
 
-cd "$tmp_dir"
-pushd "$BASE"
+cd "$tmp_dir" || exit
+pushd "$BASE" || exit
 
 #Finds and deletes files that have DELETE ME! in them 
 rm -f $(find . | xargs grep -l -F "DELETE ME!")
 
-popd
+popd || exit
 
 #Compresses and places the files back into the original directory
 tar -czf "$HERE"/cleaned_"$FILE" "$BASE"
